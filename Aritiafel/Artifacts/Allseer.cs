@@ -18,8 +18,11 @@ namespace Aritiafel.Artifacts
         {
             _CustomSeeThrough = new Dictionary<Type, Func<object, string>>();
         }
+        
         internal static Func<object, string> ConvertToCustomSeeThroughItem<T>(Func<T, string> customSeeThroughFunction)
             => m => customSeeThroughFunction((T)m);
+
+        /// <include file='xml_include_tag.xml' path='MyDocs/MyMembers[@name="test"]/*' />
         public static void RegisterCustomSeeThroughFunction<T>(Func<T, string> customSeeThroughFunction)
             => _CustomSeeThrough[typeof(T)] = ConvertToCustomSeeThroughItem(customSeeThroughFunction);
         public static bool RemoveCustomSeeThroughFunction<T>()
